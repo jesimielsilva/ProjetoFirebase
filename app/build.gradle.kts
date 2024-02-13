@@ -35,6 +35,7 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.firebase:firebase-common:20.4.2")
+    implementation("com.google.firebase:firebase-firestore:23.0.0")
     implementation("com.google.firebase:firebase-auth:21.0.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
