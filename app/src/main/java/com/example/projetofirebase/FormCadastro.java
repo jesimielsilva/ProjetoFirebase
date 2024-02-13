@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
@@ -17,12 +20,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class FormCadastro extends AppCompatActivity {
 
     private EditText edit_nome, edit_email, edit_senha_cadastro;
     private Button bt_cadastrar;
     String[] mensagens = {"Preencha todos os campos", "Cadastro realizado com sucesso"};
+    String usuarioID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +72,9 @@ public class FormCadastro extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()){
+
+                    SalvarDadosUsuario();
+
                     Snackbar snackbar = Snackbar.make(view, mensagens[1], Snackbar.LENGTH_SHORT);
                     snackbar.setBackgroundTint(Color.WHITE);
                     snackbar.setTextColor(Color.BLACK);
@@ -95,6 +107,35 @@ public class FormCadastro extends AppCompatActivity {
 
             }
         });
+
+    }
+
+    private void SalvarDadosUsuario(){
+
+        String nome = edit_nome.getText().toString();
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Map<String,Object> usuarios = new HashMap<>();
+        usuarios.put("nome", nome);
+
+        usuarioID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        DocumentReference documentReference = db.collection("Usuarios").document(usuarioID);
+        documentReference.set(usuarios).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Log.d("db","Dados salvos com sucesso");
+
+            }
+        })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("db_error","Erro ao salvar" + e.toString());
+
+                    }
+                });
 
     }
 
