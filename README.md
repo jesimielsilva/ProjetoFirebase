@@ -3,8 +3,17 @@
 Este é um projeto Android que demonstra a implementação de um sistema de autenticação usando o Firebase Authentication. O aplicativo possui as seguintes telas:
 
 1. Tela de login
-2. Tela de cadastro de usuário
-3. Tela de perfil do usuário
+   <p align="center">
+     <img width="300" src="img/tela de login.png" alt="Tela de login">
+   </p>
+3. Tela de cadastro de usuário
+   <p align="center">
+     <img width="300" src="img/tela de login.png" alt="Tela de cadastro">
+   </p>
+5. Tela de perfil do usuário
+   <p align="center">
+     <img width="300" src="img/tela de perfil.png" alt="Tela de perfil">
+   </p>
 
 ## Recursos Utilizados
 
