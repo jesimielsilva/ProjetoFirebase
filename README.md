@@ -8,7 +8,7 @@ Este é um projeto Android que demonstra a implementação de um sistema de aute
    </p>
 3. Tela de cadastro de usuário
    <p align="center">
-     <img width="300" src="img/tela de login.png" alt="Tela de cadastro">
+     <img width="300" src="img/tela de cadastro.png" alt="Tela de cadastro">
    </p>
 5. Tela de perfil do usuário
    <p align="center">
