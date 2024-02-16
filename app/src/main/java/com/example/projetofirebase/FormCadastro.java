@@ -67,41 +67,44 @@ public class FormCadastro extends AppCompatActivity {
         String email    = edit_email.getText().toString();
         String senha    = edit_senha_cadastro.getText().toString();
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, senha).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+        FirebaseAuth
+                .getInstance()
+                .createUserWithEmailAndPassword(email, senha)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
 
-                if (task.isSuccessful()){
+                        if (task.isSuccessful()){
 
-                    SalvarDadosUsuario();
+                            SalvarDadosUsuario();
 
-                    Snackbar snackbar = Snackbar.make(view, mensagens[1], Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.WHITE);
-                    snackbar.setTextColor(Color.BLACK);
-                    snackbar.show();
-                }else{
-                    String erro;
-                    try {
-                        throw task.getException();
+                            Snackbar snackbar = Snackbar.make(view, mensagens[1], Snackbar.LENGTH_SHORT);
+                            snackbar.setBackgroundTint(Color.WHITE);
+                            snackbar.setTextColor(Color.BLACK);
+                            snackbar.show();
+                        }else{
+                            String erro;
+                            try {
+                                throw task.getException();
 
-                    }catch (FirebaseAuthWeakPasswordException e) {
-                        erro = "Digite uma senha  com no mínimo 6 caracteres";
+                            }catch (FirebaseAuthWeakPasswordException e) {
+                                erro = "Digite uma senha  com no mínimo 6 caracteres";
 
-                    }catch (FirebaseAuthUserCollisionException e) {
-                        erro = "Esse E-mail já tem cadastro";
+                            }catch (FirebaseAuthUserCollisionException e) {
+                                erro = "Esse E-mail já tem cadastro";
 
-                    }catch (FirebaseAuthInvalidCredentialsException e) {
-                        erro = "E-mail inválido";
+                            }catch (FirebaseAuthInvalidCredentialsException e) {
+                                erro = "E-mail inválido";
 
-                    }catch (Exception e){
-                        erro = "Erro ao cadastrar Usuário";
+                            }catch (Exception e){
+                                erro = "Erro ao cadastrar Usuário";
 
-                    }
+                            }
 
-                    Snackbar snackbar = Snackbar.make(view, erro, Snackbar.LENGTH_SHORT);
-                    snackbar.setBackgroundTint(Color.WHITE);
-                    snackbar.setTextColor(Color.BLACK);
-                    snackbar.show();
+                            Snackbar snackbar = Snackbar.make(view, erro, Snackbar.LENGTH_SHORT);
+                            snackbar.setBackgroundTint(Color.WHITE);
+                            snackbar.setTextColor(Color.BLACK);
+                            snackbar.show();
 
                 }
 
