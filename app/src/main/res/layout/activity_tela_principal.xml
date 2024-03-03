@@ -41,7 +41,7 @@
         android:id="@+id/textNomeUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="pessoa cadastrada"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -64,7 +64,7 @@
         android:id="@+id/textEmailUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="teste@email.com"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -74,6 +74,7 @@
         app:layout_constraintStart_toEndOf="@id/iconeEmail"/>
 
     <Button
+        android:id="@+id/bbt_deslogar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
